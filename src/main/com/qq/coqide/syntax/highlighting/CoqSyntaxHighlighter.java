@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CoqSyntaxHighlighter extends SyntaxHighlighterBase {
 
-    private static final TextAttributesKey[] DEFINITION =
+    public static final TextAttributesKey[] DEFINITION =
             new TextAttributesKey[]{TextAttributesKey.createTextAttributesKey("Coq.Definition", SyntaxHighlighterColors.KEYWORD)};
     private static final TextAttributesKey[] EMPTY =
             new TextAttributesKey[0];
