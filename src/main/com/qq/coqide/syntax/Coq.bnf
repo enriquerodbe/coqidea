@@ -1,0 +1,19 @@
+{
+  parserClass="com.qq.coqide.syntax.parser.CoqParser"
+  stubParserClass="com.qq.coqide.syntax.parser.GeneratedParserUtilBase"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Coq"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.qq.coqide.syntax.parser"
+  psiImplPackage="com.qq.coqide.syntax.parser"
+
+  elementTypeHolderClass="com.qq.coqide.syntax.parser.CoqTypes"
+  elementTypeClass="com.qq.coqide.syntax.parser.CoqElementType"
+  tokenTypeClass="com.qq.coqide.syntax.parser.CoqTokenType"
+}
+
+coqFile ::= (expression | COMMENT)
+
+expression ::= DEFINITION IDENT DOT
