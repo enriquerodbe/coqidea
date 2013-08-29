@@ -9,10 +9,6 @@ import com.qq.coqide.lexer.CoqHighlightingLexer;
 import com.qq.coqide.lexer.CoqTokenTypes;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * User: enrique
- * Created: 8/28/13 10:27 AM
- */
 public class CoqSyntaxHighlighter extends SyntaxHighlighterBase {
 
     private static final TextAttributesKey[] DEFINITION =

@@ -7,10 +7,6 @@ import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * User: enrique
- * Created: 8/28/13 10:15 PM
- */
 public class CoqSyntaxHighlighterFactory extends SyntaxHighlighterFactory {
 
     @NotNull

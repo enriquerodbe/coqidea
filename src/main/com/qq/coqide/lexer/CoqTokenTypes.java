@@ -2,10 +2,6 @@ package com.qq.coqide.lexer;
 
 import com.intellij.psi.tree.IElementType;
 
-/**
- * User: enrique
- * Created: 8/15/13 7:52 PM
- */
 public interface CoqTokenTypes {
 
     /****************************** Keywords ****************************************/

@@ -7,10 +7,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-/**
- * User: enrique
- * Created: 8/14/13 10:48 PM
- */
 public class CoqFileType extends LanguageFileType {
 
     public static final CoqFileType INSTANCE = new CoqFileType();

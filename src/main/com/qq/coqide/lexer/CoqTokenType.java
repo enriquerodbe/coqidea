@@ -5,10 +5,6 @@ import com.qq.coqide.CoqLanguage;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * User: enrique
- * Created: 8/26/13 8:16 PM
- */
 public class CoqTokenType extends IElementType {
 
     public CoqTokenType(@NotNull @NonNls String debugName) {

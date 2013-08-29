@@ -4,10 +4,6 @@ import com.intellij.openapi.fileTypes.FileTypeConsumer;
 import com.intellij.openapi.fileTypes.FileTypeFactory;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * User: enrique
- * Created: 8/14/13 10:52 PM
- */
 public class CoqFileTypeFactory extends FileTypeFactory {
 
     @Override
