@@ -6,12 +6,12 @@ import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import com.qq.coqide.lexer.CoqHighlightingLexer;
-import com.qq.coqide.lexer.CoqTokenTypes;
+import com.qq.coqide.lexer.CoqKeyword;
 import org.jetbrains.annotations.NotNull;
 
 public class CoqSyntaxHighlighter extends SyntaxHighlighterBase {
 
-    public static final TextAttributesKey[] DEFINITION =
+    private static final TextAttributesKey[] KEYWORD =
             new TextAttributesKey[]{TextAttributesKey.createTextAttributesKey("Coq.Definition", SyntaxHighlighterColors.KEYWORD)};
     private static final TextAttributesKey[] EMPTY =
             new TextAttributesKey[0];
@@ -25,12 +25,10 @@ public class CoqSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType iElementType) {
-        if (iElementType.equals(CoqTokenTypes.DEFINITION)) {
-            return DEFINITION;
+        if (iElementType instanceof CoqKeyword) {
+            return KEYWORD;
         }
 
         return EMPTY;
     }
-
-
 }
