@@ -16,14 +16,16 @@ import static com.intellij.psi.TokenType.*;
 %eof}
 
 BLANK=[\ \t\n]
-FIRST_IDENT_CHAR=[a-zA-Z_]
-IDENT_CHAR=[a-zA-Z0-9_']
+FIRST_LETTER=[a-zA-Z_]
+SUBSEQUENT_LETTER=[a-zA-Z0-9_']
 COMMENT="(*" [^*] ~"*)" | "(*" "*"+ ")"
 NUM=[0-9]+
 
 %%
 
 /****************************** Keywords ****************************************/
+
+// Vernacular
 
 "Admitted"    { return ADMITTED;    }
 "Axiom"       { return AXIOM;       }
@@ -44,15 +46,14 @@ NUM=[0-9]+
 "Parameter"   { return PARAMETER;   }
 "Parameters"  { return PARAMETERS;  }
 "Proof"       { return PROOF;       }
-"Prop"        { return PROP;        }
 "Proposition" { return PROPOSITION; }
 "Qed"         { return QED;         }
 "Remark"      { return REMARK;      }
-"Set"         { return SET;         }
 "Theorem"     { return THEOREM;     }
-"Type"        { return TYPE;        }
 "Variable"    { return VARIABLE;    }
 "Variables"   { return VARIABLES;   }
+
+// Gallina
 
 "_"           { return UNDERSCORE;  }
 "as"          { return AS;          }
@@ -72,18 +73,67 @@ NUM=[0-9]+
 "let"         { return LET;         }
 "match"       { return MATCH;       }
 "mod"         { return MOD;         }
+"Prop"        { return PROP;        }
 "return"      { return RETURN;      }
+"Set"         { return SET;         }
 "then"        { return THEN;        }
+"Type"        { return TYPE;        }
 "using"       { return USING;       }
 "where"       { return WHERE;       }
 "with"        { return WITH;        }
 
 
-/****************************** Special characters ******************************/
+/****************************** Special tokens **********************************/
 
-":"  { return COLON;    }
-"."  { return DOT;      }
-":=" { return COLON_EQ; }
+"!"     { return EXCLAMATION; }
+"%"     { return PERCENT; }
+"&"     { return AMPERSAND; }
+"&&"    { return DOUBLE_AMPERSAND; }
+"("     { return LEFT_PAREN; }
+"()"    { return EMPTY_PAREN; }
+")"     { return RIGHT_PAREN; }
+"*"     { return ASTERISK; }
+"+"     { return PLUS; }
+"++"    { return DOUBLE_PLUS; }
+","     { return COMMA; }
+"-"     { return HYPHEN; }
+"->"    { return RIGHT_SIMPLE_ARROW; }
+"."     { return DOT;      }
+".("    { return DOT_PAREN; }
+".."    { return DOUBLE_DOT; }
+"/"     { return SLASH; }
+"/\"    { return AND; }
+":"     { return COLON; }
+"::"    { return DOUBLE_COLON; }
+":<"    { return INCLUDED; } // TODO: Check this symbol meaning
+":="    { return COLON_EQUAL; }
+":>"    { return INCLUDES; } // TODO: Check this symbol meaning
+";"     { return SEMICOLON; }
+"<"     { return LESS; }
+"<-"    { return LEFT_SIMPLE_ARROW; }
+"<->"   { return IF_AND_ONLY_IF; }
+"<:"    { return LESS_COLON; } // TODO: Check this symbol meaning
+"<="    { return LESS_EQUAL; }
+"<>"    { return DISTINCT; }
+"="     { return EQUAL; }
+"=>"    { return RIGHT_DOUBLE_ARROW; }
+"=_D"   { return HAPPINESS; }
+">"     { return GREATER; }
+">->"   { return PATH; } // TODO: Check this symbol meaning
+">="    { return GREATER_EQUAL; }
+"?"     { return QUESTION; }
+"?="    { return QUESTION_EQUAL; }
+"@"     { return AT_SIGN; }
+"["     { return LEFT_BRACKET; }
+"\/"    { return OR; }
+"]"     { return RIGHT_BRACKET; }
+"^"     { return CARET; }
+"{"     { return LEFT_BRACE; }
+"|"     { return PIPE; }
+"|-"    { return PIPE_HYPHEN; } // TODO: Check this symbol meaning
+"||"    { return DOUBLE_PIPE; }
+"}"     { return RIGHT_BRACE; }
+"~"     { return EQUIVALENCY; }
 
 
 /****************************** Literals ****************************************/
@@ -94,9 +144,9 @@ NUM=[0-9]+
 
 /****************************** Composed tokens *********************************/
 
-{BLANK}+                        { return WHITE_SPACE; }
-{COMMENT}                       { return COMMENT;     }
-{FIRST_IDENT_CHAR}{IDENT_CHAR}* { return IDENT;       }
+{BLANK}+                           { return WHITE_SPACE; }
+{COMMENT}                          { return COMMENT;     }
+{FIRST_LETTER}{SUBSEQUENT_LETTER}* { return IDENT;       }
 
 
 /****************************** Other *******************************************/
