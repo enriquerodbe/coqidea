@@ -11,4 +11,5 @@ out/*
 *.ear
 
 # Generated files #
+gen/*
 src/main/com/qq/coqide/lexer/CoqLexer.java

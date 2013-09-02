@@ -1,0 +1,75 @@
+
+{
+  parserClass="com.qq.coqide.syntax.parser.CoqParser"
+  stubParserClass="com.qq.coqide.syntax.parser.GeneratedParserUtilBase"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Coq"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.qq.coqide.syntax.parser.psi"
+  psiImplPackage="com.qq.coqide.syntax.parser.psi"
+
+  elementTypeHolderClass="com.qq.coqide.syntax.parser.CoqTokenTypes"
+  elementTypeClass="com.qq.coqide.lexer.CoqElementType"
+  tokenTypeClass="com.qq.coqide.lexer.CoqTokenType"
+}
+
+coqFile ::= (keyword | INTEGER | STRING_LITERAL | COMMENT | IDENT)*
+
+keyword ::= vernacularKeyword | gallinaKeyword
+
+vernacularKeyword ::=
+      ADMITTED
+    | AXIOM
+    | COFIXPOINT
+    | COINDUCTIVE
+    | CONJECTURE
+    | COROLLARY
+    | DEFINED
+    | DEFINITION
+    | EXAMPLE
+    | FACT
+    | FIXPOINT
+    | HYPOTHESES
+    | HYPOTHESIS
+    | INDUCTIVE
+    | LEMMA
+    | LET_UPPER
+    | PARAMETER
+    | PARAMETERS
+    | PROOF
+    | PROPOSITION
+    | QED
+    | REMARK
+    | THEOREM
+    | VARIABLE
+    | VARIABLES
+    
+gallinaKeyword ::=
+      UNDERSCORE
+    | AS
+    | AT
+    | COFIX
+    | ELSE
+    | END
+    | EXISTS
+    | EXISTS2
+    | FIX
+    | FOR
+    | FORALL
+    | FUN
+    | IF
+    | IF_UPPER
+    | IN
+    | LET
+    | MATCH
+    | MOD
+    | PROP
+    | RETURN
+    | SET
+    | THEN
+    | TYPE
+    | USING
+    | WHERE
+    | WITH

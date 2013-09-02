@@ -40,5 +40,6 @@
       <fileTypeFactory implementation="com.qq.coqide.filetype.CoqFileTypeFactory"/>
       <lang.syntaxHighlighterFactory key="Coq" implementationClass="com.qq.coqide.syntax.highlighting.CoqSyntaxHighlighterFactory"/>
       <colorSettingsPage implementation="com.qq.coqide.settings.CoqColorSettingsPage"/>
+      <lang.parserDefinition language="Coq" implementationClass="com.qq.coqide.syntax.parser.CoqParserDefinition"/>
   </extensions>
 </idea-plugin>
