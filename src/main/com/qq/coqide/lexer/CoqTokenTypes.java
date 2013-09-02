@@ -8,61 +8,61 @@ public interface CoqTokenTypes {
 
     // Vernacular
 
-    IElementType ADMITTED    = new CoqKeyword("ADMITTED");
-    IElementType AXIOM       = new CoqKeyword("AXIOM");
-    IElementType COFIXPOINT  = new CoqKeyword("COFIXPOINT");
-    IElementType COINDUCTIVE = new CoqKeyword("COINDUCTIVE");
-    IElementType CONJECTURE  = new CoqKeyword("CONJECTURE");
-    IElementType COROLLARY   = new CoqKeyword("COROLLARY");
-    IElementType DEFINED     = new CoqKeyword("DEFINED");
-    IElementType DEFINITION  = new CoqKeyword("HYPOTHESES");
-    IElementType EXAMPLE     = new CoqKeyword("EXAMPLE");
-    IElementType FACT        = new CoqKeyword("FACT");
-    IElementType FIXPOINT    = new CoqKeyword("FIXPOINT");
-    IElementType HYPOTHESES  = new CoqKeyword("HYPOTHESES");
-    IElementType HYPOTHESIS  = new CoqKeyword("HYPOTHESIS");
-    IElementType INDUCTIVE   = new CoqKeyword("INDUCTIVE");
-    IElementType LEMMA       = new CoqKeyword("LEMMA");
-    IElementType LET_UPPER   = new CoqKeyword("LET_UPPER");
-    IElementType PARAMETER   = new CoqKeyword("PARAMETER");
-    IElementType PARAMETERS  = new CoqKeyword("PARAMETERS");
-    IElementType PROOF       = new CoqKeyword("PROOF");
-    IElementType PROPOSITION = new CoqKeyword("PROPOSITION");
-    IElementType QED         = new CoqKeyword("QED");
-    IElementType REMARK      = new CoqKeyword("REMARK");
-    IElementType THEOREM     = new CoqKeyword("THEOREM");
-    IElementType VARIABLE    = new CoqKeyword("VARIABLE");
-    IElementType VARIABLES   = new CoqKeyword("VARIABLES");
+    IElementType ADMITTED    = new VernacularKeyword("ADMITTED");
+    IElementType AXIOM       = new VernacularKeyword("AXIOM");
+    IElementType COFIXPOINT  = new VernacularKeyword("COFIXPOINT");
+    IElementType COINDUCTIVE = new VernacularKeyword("COINDUCTIVE");
+    IElementType CONJECTURE  = new VernacularKeyword("CONJECTURE");
+    IElementType COROLLARY   = new VernacularKeyword("COROLLARY");
+    IElementType DEFINED     = new VernacularKeyword("DEFINED");
+    IElementType DEFINITION  = new VernacularKeyword("HYPOTHESES");
+    IElementType EXAMPLE     = new VernacularKeyword("EXAMPLE");
+    IElementType FACT        = new VernacularKeyword("FACT");
+    IElementType FIXPOINT    = new VernacularKeyword("FIXPOINT");
+    IElementType HYPOTHESES  = new VernacularKeyword("HYPOTHESES");
+    IElementType HYPOTHESIS  = new VernacularKeyword("HYPOTHESIS");
+    IElementType INDUCTIVE   = new VernacularKeyword("INDUCTIVE");
+    IElementType LEMMA       = new VernacularKeyword("LEMMA");
+    IElementType LET_UPPER   = new VernacularKeyword("LET_UPPER");
+    IElementType PARAMETER   = new VernacularKeyword("PARAMETER");
+    IElementType PARAMETERS  = new VernacularKeyword("PARAMETERS");
+    IElementType PROOF       = new VernacularKeyword("PROOF");
+    IElementType PROPOSITION = new VernacularKeyword("PROPOSITION");
+    IElementType QED         = new VernacularKeyword("QED");
+    IElementType REMARK      = new VernacularKeyword("REMARK");
+    IElementType THEOREM     = new VernacularKeyword("THEOREM");
+    IElementType VARIABLE    = new VernacularKeyword("VARIABLE");
+    IElementType VARIABLES   = new VernacularKeyword("VARIABLES");
 
     
     // Gallina
 
-    IElementType UNDERSCORE = new CoqKeyword("UNDERSCORE");
-    IElementType AS         = new CoqKeyword("AS");
-    IElementType AT         = new CoqKeyword("AT");
-    IElementType COFIX      = new CoqKeyword("COFIX");
-    IElementType ELSE       = new CoqKeyword("ELSE");
-    IElementType END        = new CoqKeyword("END");
-    IElementType EXISTS     = new CoqKeyword("EXISTS");
-    IElementType EXISTS2    = new CoqKeyword("EXISTS2");
-    IElementType FIX        = new CoqKeyword("FIX");
-    IElementType FOR        = new CoqKeyword("FOR");
-    IElementType FORALL     = new CoqKeyword("FORALL");
-    IElementType FUN        = new CoqKeyword("FUN");
-    IElementType IF         = new CoqKeyword("IF");
-    IElementType IF_UPPER   = new CoqKeyword("IF_UPPER");
-    IElementType IN         = new CoqKeyword("IN");
-    IElementType LET        = new CoqKeyword("LET");
-    IElementType MATCH      = new CoqKeyword("MATCH");
-    IElementType MOD        = new CoqKeyword("MOD");
-    IElementType PROP       = new CoqKeyword("PROP");
-    IElementType RETURN     = new CoqKeyword("RETURN");
-    IElementType SET        = new CoqKeyword("SET");
-    IElementType THEN       = new CoqKeyword("THEN");
-    IElementType TYPE       = new CoqKeyword("TYPE");
-    IElementType USING      = new CoqKeyword("USING");
-    IElementType WHERE      = new CoqKeyword("WHERE");
-    IElementType WITH       = new CoqKeyword("WITH");
+    IElementType UNDERSCORE = new GallinaKeyword("UNDERSCORE");
+    IElementType AS         = new GallinaKeyword("AS");
+    IElementType AT         = new GallinaKeyword("AT");
+    IElementType COFIX      = new GallinaKeyword("COFIX");
+    IElementType ELSE       = new GallinaKeyword("ELSE");
+    IElementType END        = new GallinaKeyword("END");
+    IElementType EXISTS     = new GallinaKeyword("EXISTS");
+    IElementType EXISTS2    = new GallinaKeyword("EXISTS2");
+    IElementType FIX        = new GallinaKeyword("FIX");
+    IElementType FOR        = new GallinaKeyword("FOR");
+    IElementType FORALL     = new GallinaKeyword("FORALL");
+    IElementType FUN        = new GallinaKeyword("FUN");
+    IElementType IF         = new GallinaKeyword("IF");
+    IElementType IF_UPPER   = new GallinaKeyword("IF_UPPER");
+    IElementType IN         = new GallinaKeyword("IN");
+    IElementType LET        = new GallinaKeyword("LET");
+    IElementType MATCH      = new GallinaKeyword("MATCH");
+    IElementType MOD        = new GallinaKeyword("MOD");
+    IElementType PROP       = new GallinaKeyword("PROP");
+    IElementType RETURN     = new GallinaKeyword("RETURN");
+    IElementType SET        = new GallinaKeyword("SET");
+    IElementType THEN       = new GallinaKeyword("THEN");
+    IElementType TYPE       = new GallinaKeyword("TYPE");
+    IElementType USING      = new GallinaKeyword("USING");
+    IElementType WHERE      = new GallinaKeyword("WHERE");
+    IElementType WITH       = new GallinaKeyword("WITH");
 
 
     /****************************** Special tokens **********************************/
@@ -120,13 +120,12 @@ public interface CoqTokenTypes {
 
     /****************************** Literals ****************************************/
 
-    IElementType INTEGER = new CoqElementType("INTEGER");
-    IElementType STRING  = new CoqElementType("STRING");
+    IElementType INTEGER        = new CoqInteger("INTEGER");
+    IElementType STRING_LITERAL = new CoqString("STRING_LITERAL");
 
-    
+
     /****************************** Composed tokens *********************************/
 
-    IElementType COMMENT        = new CoqElementType("COMMENT");
-    IElementType STRING_LITERAL = new CoqElementType("STRING_LITERAL");
-    IElementType IDENT          = new CoqElementType("IDENT");
+    IElementType COMMENT = new CoqComment("COMMENT");
+    IElementType IDENT   = new CoqIdent("IDENT");
 }

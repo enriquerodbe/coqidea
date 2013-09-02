@@ -39,8 +39,6 @@
   <extensions defaultExtensionNs="com.intellij">
       <fileTypeFactory implementation="com.qq.coqide.filetype.CoqFileTypeFactory"/>
       <lang.syntaxHighlighterFactory key="Coq" implementationClass="com.qq.coqide.syntax.highlighting.CoqSyntaxHighlighterFactory"/>
-      <lang.parserDefinition language="Coq" implementationClass="com.qq.coqide.syntax.parser.CoqParserDefinition"/>
       <colorSettingsPage implementation="com.qq.coqide.settings.CoqColorSettingsPage"/>
-    <!-- Add your extensions here -->
   </extensions>
 </idea-plugin>

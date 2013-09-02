@@ -9,3 +9,6 @@ out/*
 *.jar
 *.war
 *.ear
+
+# Generated files #
+src/main/com/qq/coqide/lexer/CoqLexer.java

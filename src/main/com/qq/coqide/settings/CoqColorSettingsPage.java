@@ -13,11 +13,19 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import java.util.Map;
 
+import static com.qq.coqide.syntax.highlighting.DefaultTextAttributes.*;
+
 public class CoqColorSettingsPage implements ColorSettingsPage {
 
     private static final AttributesDescriptor[] DESCRIPTORS =
             new AttributesDescriptor[] {
-                    new AttributesDescriptor("Keyword", CoqSyntaxHighlighter.DEFINITION[0])
+                    new AttributesDescriptor("Gallina keyword", GALLINA_KEYWORD_KEY[0]),
+                    new AttributesDescriptor("Vernacular keyword", VERNACULAR_KEYWORD_KEY[0]),
+                    new AttributesDescriptor("Special token", SPECIAL_TOKEN_KEY[0]),
+                    new AttributesDescriptor("Integer", INTEGER_KEY[0]),
+                    new AttributesDescriptor("String", STRING_KEY[0]),
+                    new AttributesDescriptor("Comment", COMMENT_KEY[0]),
+                    new AttributesDescriptor("Ident", IDENT_KEY[0])
             };
 
     @Nullable

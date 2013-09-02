@@ -2,9 +2,9 @@ package com.qq.coqide.lexer;
 
 import org.jetbrains.annotations.NonNls;
 
-public class CoqKeyword extends CoqElementType {
+public class CoqComment extends CoqElementType {
 
-    public CoqKeyword(@NonNls String debugName) {
+    public CoqComment(@NonNls String debugName) {
         super(debugName);
     }
 }

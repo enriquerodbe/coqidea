@@ -19,7 +19,6 @@ BLANK=[\ \t\n]
 FIRST_LETTER=[a-zA-Z_]
 SUBSEQUENT_LETTER=[a-zA-Z0-9_']
 COMMENT="(*" [^*] ~"*)" | "(*" "*"+ ")"
-NUM=[0-9]+
 
 %%
 
@@ -102,7 +101,7 @@ NUM=[0-9]+
 ".("    { return DOT_PAREN; }
 ".."    { return DOUBLE_DOT; }
 "/"     { return SLASH; }
-"/\"    { return AND; }
+"/\\"   { return AND; }
 ":"     { return COLON; }
 "::"    { return DOUBLE_COLON; }
 ":<"    { return INCLUDED; } // TODO: Check this symbol meaning
@@ -138,7 +137,7 @@ NUM=[0-9]+
 
 /****************************** Literals ****************************************/
 
-"-"?{NUM}+ { return INTEGER; }
+"-"?[0-9]+ { return INTEGER; }
 \".*\"     { return STRING_LITERAL; }
 
 
