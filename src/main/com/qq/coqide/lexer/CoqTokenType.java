@@ -13,6 +13,6 @@ public class CoqTokenType extends IElementType {
 
     @Override
     public String toString() {
-        return "CoqSimpleType." + super.toString();
+        return "CoqType." + super.toString();
     }
 }
