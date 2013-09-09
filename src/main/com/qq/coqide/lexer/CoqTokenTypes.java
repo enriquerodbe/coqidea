@@ -15,7 +15,7 @@ public interface CoqTokenTypes {
     IElementType CONJECTURE  = new VernacularKeyword("CONJECTURE");
     IElementType COROLLARY   = new VernacularKeyword("COROLLARY");
     IElementType DEFINED     = new VernacularKeyword("DEFINED");
-    IElementType DEFINITION  = new VernacularKeyword("HYPOTHESES");
+    IElementType DEFINITION  = new VernacularKeyword("DEFINITION");
     IElementType EXAMPLE     = new VernacularKeyword("EXAMPLE");
     IElementType FACT        = new VernacularKeyword("FACT");
     IElementType FIXPOINT    = new VernacularKeyword("FIXPOINT");
