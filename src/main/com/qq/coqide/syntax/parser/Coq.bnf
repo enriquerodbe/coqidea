@@ -15,61 +15,150 @@
   tokenTypeClass="com.qq.coqide.lexer.CoqTokenType"
 }
 
-coqFile ::= (keyword | INTEGER | STRING_LITERAL | COMMENT | IDENT)*
+coqFile ::= ( sentence | COMMENT ) *
 
-keyword ::= vernacularKeyword | gallinaKeyword
 
-vernacularKeyword ::=
-      ADMITTED
-    | AXIOM
-    | COFIXPOINT
-    | COINDUCTIVE
+/* VERNACULAR COMMANDS */
+
+sentence ::=
+      assumption
+    | definition_sentence
+    | inductive_sentence
+    | fixpoint_sentence
+    | assertion proof_sentence
+
+assumption ::= assumption_keyword assums DOT
+
+assumption_keyword ::=
+      AXIOM
     | CONJECTURE
-    | COROLLARY
-    | DEFINED
-    | DEFINITION
-    | EXAMPLE
-    | FACT
-    | FIXPOINT
-    | HYPOTHESES
-    | HYPOTHESIS
-    | INDUCTIVE
-    | LEMMA
-    | LET_UPPER
     | PARAMETER
     | PARAMETERS
-    | PROOF
-    | PROPOSITION
-    | QED
-    | REMARK
-    | THEOREM
     | VARIABLE
     | VARIABLES
-    
-gallinaKeyword ::=
-      UNDERSCORE
-    | AS
-    | AT
-    | COFIX
-    | ELSE
-    | END
-    | EXISTS
-    | EXISTS2
-    | FIX
-    | FOR
-    | FORALL
-    | FUN
-    | IF
-    | IF_UPPER
-    | IN
-    | LET
-    | MATCH
-    | MOD
-    | PROP
-    | RETURN
+    | HYPOTHESIS
+    | HYPOTHESES
+
+assums ::=
+      IDENT (IDENT) * COLON term
+    | LEFT_PAREN ident ident * COLON term RIGHT_PAREN (LEFT_PAREN ident ident * COLON term RIGHT_PAREN) *
+
+definition_sentence ::=
+      DEFINITION IDENT binders? [ COLON term ] COLON_EQUAL term DOT
+    | LET IDENT binders? [ COLON term ] COLON_EQUAL term DOT
+
+inductive_sentence ::=
+      INDUCTIVE ind_body (WITH ind_body) * DOT
+    | COINDUCTIVE ind_body (WITH ind_body) * DOT
+
+ind_body ::= IDENT binders? COLON term COLON_EQUAL [ PIPE? IDENT binders? [ COLON term ] (PIPE IDENT binders? [ COLON term ]) * ]
+
+fixpoint_sentence ::=
+      FIXPOINT fix_body (WITH fix_body) * DOT
+    | COFIXPOINT fix_body (WITH fix_body) * DOT
+
+assertion ::= assertion_keyword IDENT binders? COLON term DOT
+
+assertion_keyword ::=
+      THEOREM
+    | LEMMA
+    | REMARK
+    | FACT
+    | COROLLARY
+    | PROPOSITION
+    | DEFINITION
+    | EXAMPLE
+
+proof_sentence ::=
+      PROOF DOT QED DOT
+    | PROOF DOT DEFINED DOT
+    | PROOF DOT ADMITTED DOT
+
+
+/* GALLINA terms */
+
+term ::=
+      FORALL binders COMMA term repetition?
+    | FUN binders RIGHT_DOUBLE_ARROW term repetition?
+    | FIX fix_bodies repetition?
+    | COFIX cofix_bodies repetition?
+    | LET IDENT binders? [ COLON term ] COLON_EQUAL term IN term repetition?
+    | LET FIX fix_body IN term repetition?
+    | LET COFIX fix_body IN term repetition?
+    | LET LEFT_PAREN [ name_term (COMMA name_term) * ] RIGHT_PAREN dep_ret_type? COLON_EQUAL term IN term repetition?
+    | IF term dep_ret_type? THEN term ELSE term repetition?
+    | AT_SIGN qualid term * repetition?
+    | MATCH [ match_item (COMMA match_item) * ] return_type? WITH [ PIPE? equation (PIPE equation) * ] END repetition?
+    | qualid repetition?
+    | sort repetition?
+    | INTEGER repetition?
+    | UNDERSCORE repetition?
+    | LEFT_PAREN term RIGHT_PAREN repetition?
+
+repetition ::=
+      COLON term (COLON term) *
+    | LESS_COLON term (LESS_COLON term) *
+    | RIGHT_SIMPLE_ARROW term (RIGHT_SIMPLE_ARROW term) *
+    | arg arg *
+    | PERCENT ident (PERCENT ident) *
+
+arg ::=
+      term
+    | LEFT_PAREN ident COLON_EQUAL term RIGHT_PAREN
+
+binders ::= binder binder *
+
+binder ::=
+      name_term
+    | LEFT_PAREN name_term name_term * COLON term RIGHT_PAREN
+    | LEFT_PAREN name_term [ COLON term ] COLON_EQUAL term RIGHT_PAREN
+
+name_term ::=
+      IDENT
+    | UNDERSCORE
+
+qualid ::= IDENT (access_ident) *
+
+access_ident ::= DOT IDENT
+
+sort ::=
+      PROP
     | SET
-    | THEN
     | TYPE
-    | USING
-    | WHERE
-    | WITH
+
+fix_bodies ::=
+      fix_body
+    | fix_body (WITH fix_body) * FOR IDENT
+
+cofix_bodies ::=
+      cofix_body
+    | cofix_body (WITH cofix_body) * FOR ident
+
+fix_body ::= ident binders annotation? [ COLON term ] COLON_EQUAL term
+
+cofix_body ::= ident binders? [ COLON term ] COLON_EQUAL term
+
+annotation ::= LEFT_BRACE STRUCT ident RIGHT_BRACE
+
+match_item ::= term [ AS name_term ] [ IN term ]
+
+dep_ret_type ::= [ AS name_term ] return_type
+
+return_type ::= RETURN term
+
+equation ::= mult_pattern (PIPE mult_pattern) * RIGHT_DOUBLE_ARROW term
+
+mult_pattern ::= pattern (COMMA pattern) *
+
+pattern ::=
+      qualid pattern pattern * pattern_ending?
+    | qualid pattern_ending?
+    | UNDERSCORE pattern_ending?
+    | INTEGER pattern_ending?
+    | LEFT_PAREN or_pattern (COMMA or_pattern) * RIGHT_PAREN pattern_ending?
+
+pattern_ending ::=
+      AS IDENT (AS IDENT) *
+    | PERCENT IDENT (PERCENT IDENT) *
+
+or_pattern ::= pattern (PIPE pattern) *
