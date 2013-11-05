@@ -23,9 +23,7 @@ public class CoqColorSettingsPage implements ColorSettingsPage {
                     new AttributesDescriptor("Vernacular keyword", VERNACULAR_KEYWORD_KEY[0]),
                     new AttributesDescriptor("Special token", SPECIAL_TOKEN_KEY[0]),
                     new AttributesDescriptor("Integer", INTEGER_KEY[0]),
-                    new AttributesDescriptor("String", STRING_KEY[0]),
-                    new AttributesDescriptor("Comment", COMMENT_KEY[0]),
-                    new AttributesDescriptor("Ident", IDENT_KEY[0])
+                    new AttributesDescriptor("Comment", COMMENT_KEY[0])
             };
 
     @Nullable
