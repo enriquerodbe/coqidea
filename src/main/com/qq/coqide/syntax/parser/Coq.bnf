@@ -13,9 +13,77 @@
   elementTypeHolderClass="com.qq.coqide.syntax.parser.CoqTokenTypes"
   elementTypeClass="com.qq.coqide.lexer.CoqElementType"
   tokenTypeClass="com.qq.coqide.lexer.CoqTokenType"
+
+  tokens = [
+      COLON_EQUAL=":="
+      DOT="."
+      ADMITTED="Admitted"
+      AXIOM="Axiom"
+      COFIXPOINT="CoFixpoint"
+      COINDUCTIVE="CoInductive"
+      CONJECTURE="Conjecture"
+      COROLLARY="Corollary"
+      DEFINED="Defined"
+      DEFINITION="Definition"
+      EXAMPLE="Example"
+      FACT="Fact"
+      FIXPOINT="Fixpoint"
+      HYPOTHESES="Hypotheses"
+      HYPOTHESIS="Hypothesis"
+      INDUCTIVE="Inductive"
+      LEMMA="Lemma"
+      PARAMETER="Parameter"
+      PARAMETERS="Parameters"
+      PROOF="Proof"
+      PROPOSITION="Proposition"
+      QED="Qed"
+      REMARK="Remark"
+      THEOREM="Theorem"
+      VARIABLE="Variable"
+      VARIABLES="Variables"
+      UNDERSCORE="_"
+      AS="as"
+      COFIX="cofix"
+      ELSE="else"
+      END="end"
+      FIX="fix"
+      FOR="for"
+      FORALL="forall"
+      FUN="fun"
+      IF="if"
+      IN="in"
+      LET="let"
+      MATCH="match"
+      PROP="Prop"
+      RETURN="return"
+      SET="Set"
+      THEN="then"
+      TYPE="Type"
+      WITH="with"
+      PERCENT="%"
+      LEFT_PAREN="("
+      RIGHT_PAREN=")"
+      COMMA=","
+      RIGHT_SIMPLE_ARROW="->"
+      DOT="."
+      COLON=":"
+      COLON_EQUAL=":="
+      LESS_COLON="<:"
+      RIGHT_DOUBLE_ARROW="=>"
+      AT_SIGN="@"
+      LEFT_BRACE="{"
+      PIPE="|"
+      RIGHT_BRACE="}"
+      END_LINE="\n"
+      IDENT="regexp:[a-zA-Z_][a-zA-Z0-9_']*"
+      INTEGER="regexp:-?[0-9]+"
+      COMMENT="regexp:\(\*.*\*\)"
+    ]
 }
 
-coqFile ::= ( sentence | COMMENT ) *
+coqFile ::= ( vernacular_sentence | COMMENT ) *
+
+private vernacular_sentence ::= sentence DOT {pin=1}
 
 
 /* VERNACULAR COMMANDS */
@@ -27,7 +95,7 @@ sentence ::=
     | fixpoint_sentence
     | assertion proof_sentence
 
-assumption ::= assumption_keyword assums DOT
+assumption ::= assumption_keyword assums
 
 assumption_keyword ::=
       AXIOM
@@ -40,24 +108,30 @@ assumption_keyword ::=
     | HYPOTHESES
 
 assums ::=
-      IDENT (IDENT) * COLON term
-    | LEFT_PAREN ident ident * COLON term RIGHT_PAREN (LEFT_PAREN ident ident * COLON term RIGHT_PAREN) *
+      assum
+    | paren_assums paren_assums *
+
+private assum ::= IDENT (IDENT) * COLON term
+
+private paren_assums ::= LEFT_PAREN assum RIGHT_PAREN
 
 definition_sentence ::=
-      DEFINITION IDENT binders? [ COLON term ] COLON_EQUAL term DOT
-    | LET IDENT binders? [ COLON term ] COLON_EQUAL term DOT
+      DEFINITION IDENT binders? [ COLON term ] COLON_EQUAL term
+    | LET IDENT binders? [ COLON term ] COLON_EQUAL term
 
 inductive_sentence ::=
-      INDUCTIVE ind_body (WITH ind_body) * DOT
-    | COINDUCTIVE ind_body (WITH ind_body) * DOT
+      INDUCTIVE ind_body (WITH ind_body) *
+    | COINDUCTIVE ind_body (WITH ind_body) *
 
-ind_body ::= IDENT binders? COLON term COLON_EQUAL [ PIPE? IDENT binders? [ COLON term ] (PIPE IDENT binders? [ COLON term ]) * ]
+ind_body ::= IDENT binders? COLON term COLON_EQUAL [ ind_branches ]
+
+private ind_branches ::= PIPE? IDENT binders? [ COLON term ] (PIPE IDENT binders? [ COLON term ]) *
 
 fixpoint_sentence ::=
-      FIXPOINT fix_body (WITH fix_body) * DOT
-    | COFIXPOINT fix_body (WITH fix_body) * DOT
+      FIXPOINT fix_body (WITH fix_body) *
+    | COFIXPOINT fix_body (WITH fix_body) *
 
-assertion ::= assertion_keyword IDENT binders? COLON term DOT
+assertion ::= assertion_keyword IDENT binders? COLON term
 
 assertion_keyword ::=
       THEOREM
@@ -100,11 +174,11 @@ repetition ::=
     | LESS_COLON term (LESS_COLON term) *
     | RIGHT_SIMPLE_ARROW term (RIGHT_SIMPLE_ARROW term) *
     | arg arg *
-    | PERCENT ident (PERCENT ident) *
+    | PERCENT IDENT (PERCENT IDENT) *
 
 arg ::=
       term
-    | LEFT_PAREN ident COLON_EQUAL term RIGHT_PAREN
+    | LEFT_PAREN IDENT COLON_EQUAL term RIGHT_PAREN
 
 binders ::= binder binder *
 
@@ -132,13 +206,13 @@ fix_bodies ::=
 
 cofix_bodies ::=
       cofix_body
-    | cofix_body (WITH cofix_body) * FOR ident
+    | cofix_body (WITH cofix_body) * FOR IDENT
 
-fix_body ::= ident binders annotation? [ COLON term ] COLON_EQUAL term
+fix_body ::= IDENT binders annotation? [ COLON term ] COLON_EQUAL term
 
-cofix_body ::= ident binders? [ COLON term ] COLON_EQUAL term
+cofix_body ::= IDENT binders? [ COLON term ] COLON_EQUAL term
 
-annotation ::= LEFT_BRACE STRUCT ident RIGHT_BRACE
+annotation ::= LEFT_BRACE STRUCT IDENT RIGHT_BRACE
 
 match_item ::= term [ AS name_term ] [ IN term ]
 

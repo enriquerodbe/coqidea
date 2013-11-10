@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
-import static java.awt.Color.*;
+import static com.intellij.ui.JBColor.*;
 import static java.awt.Font.BOLD;
 import static java.awt.Font.ITALIC;
 
